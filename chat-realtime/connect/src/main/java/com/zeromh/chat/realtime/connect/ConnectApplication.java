@@ -3,11 +3,11 @@ package com.zeromh.chat.realtime.connect;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class ConnectApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ConnectApplication.class, args);
-	}
+//	public static void main(String[] args) {
+//		SpringApplication.run(ConnectApplication.class, args);
+//	}
 
 }

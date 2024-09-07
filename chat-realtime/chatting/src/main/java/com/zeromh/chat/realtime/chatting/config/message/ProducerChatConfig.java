@@ -1,6 +1,7 @@
 package com.zeromh.chat.realtime.chatting.config.message;
 
-import com.zeromh.chat.core.domain.Message;
+import com.zeromh.chat.core.domain.message.Message;
+import com.zeromh.chat.core.domain.message.PersonalMessage;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

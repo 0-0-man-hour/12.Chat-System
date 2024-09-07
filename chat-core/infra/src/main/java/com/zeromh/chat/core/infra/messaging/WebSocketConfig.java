@@ -1,5 +1,6 @@
-package com.zeromh.chat.realtime.chatting.config.websocket;
+package com.zeromh.chat.core.infra.messaging;
 
+import com.zeromh.chat.core.infra.ChatConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -15,7 +16,7 @@ import java.util.UUID;
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer, ChatConfig {
 
 
     @Override

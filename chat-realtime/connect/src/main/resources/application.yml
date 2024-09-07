@@ -1,0 +1,13 @@
+management:
+  repository: redis
+
+spring:
+  application:
+    name: connect
+  data:
+    mongodb:
+      database: connect
+server:
+  address: localhost
+  port: 8081
+

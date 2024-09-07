@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @EnableChatConfig({
 	ChatConfigGroup.MONGO,
 	ChatConfigGroup.KAFKA,
+	ChatConfigGroup.WEBSOCKET,
+	ChatConfigGroup.REDIS,
 })
 class InfraConfig {
 }

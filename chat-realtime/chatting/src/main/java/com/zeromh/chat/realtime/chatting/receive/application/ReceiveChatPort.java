@@ -1,14 +1,11 @@
 package com.zeromh.chat.realtime.chatting.receive.application;
 
-import com.zeromh.chat.core.domain.Message;
-import org.springframework.kafka.listener.MessageListener;
-
-import java.util.concurrent.ExecutionException;
+import com.zeromh.chat.core.domain.message.PersonalMessage;
 
 public interface ReceiveChatPort {
     void subscribe(String userId, String sessionId);
 
     void unsubscribe(String userId);
 
-    void sendMessage(Message message);
+    void sendMessage(PersonalMessage personalMessage);
 }

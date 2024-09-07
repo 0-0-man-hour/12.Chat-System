@@ -1,6 +1,6 @@
 package com.zeromh.chat.realtime.chatting.receive.adapter.message;
 
-import com.zeromh.chat.core.domain.Message;
+import com.zeromh.chat.core.domain.message.PersonalMessage;
 import com.zeromh.chat.realtime.chatting.receive.application.ReceiveChatPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -31,8 +31,8 @@ public class ReceiveChatSender implements ReceiveChatPort {
     }
 
     @Override
-    public void sendMessage(Message message) {
-        messagingTemplate.convertAndSendToUser(sessions.get(message.getTo()), "/queue/chat", message);
+    public void sendMessage(PersonalMessage personalMessage) {
+        messagingTemplate.convertAndSendToUser(sessions.get(personalMessage.getTo()), "/queue/chat", personalMessage);
     }
 
 }

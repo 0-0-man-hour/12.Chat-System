@@ -1,6 +1,7 @@
 package com.zeromh.chat.realtime.chatting.send.adapter;
 
-import com.zeromh.chat.core.domain.Message;
+import com.zeromh.chat.core.domain.message.GroupMessage;
+import com.zeromh.chat.core.domain.message.PersonalMessage;
 import com.zeromh.chat.realtime.chatting.send.application.SendChatUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -12,16 +13,14 @@ public class ChattingController {
 
     private final SendChatUseCase sendChatUseCase;
 
-    @MessageMapping("/greeting")
-    public String handle(String greeting) {
-        System.out.println("greet");
-        return "[]: " + greeting;
+    @MessageMapping("/send")
+    public void sendMessage(PersonalMessage personalMessage) {
+        sendChatUseCase.saveAndSendMessage(personalMessage);
     }
 
-    @MessageMapping("/send")
-    public String sendMessage(Message message) {
-        sendChatUseCase.saveAndSend(message);
-        return "";
+    @MessageMapping("/group/send")
+    public void sendGroupMessage(GroupMessage message) {
+        sendChatUseCase.saveAndSendGroupMessage(message);
     }
 
 }

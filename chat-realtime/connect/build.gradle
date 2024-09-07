@@ -4,5 +4,9 @@ bootJar { enabled = false }
 jar { enabled = true }
 
 dependencies {
-
+    implementation project(':chat-core:domain')
+    implementation project(':chat-core:infra')
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 }

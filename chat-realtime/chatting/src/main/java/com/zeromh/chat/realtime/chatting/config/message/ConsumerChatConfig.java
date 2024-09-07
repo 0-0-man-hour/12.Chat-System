@@ -1,6 +1,7 @@
 package com.zeromh.chat.realtime.chatting.config.message;
 
-import com.zeromh.chat.core.domain.Message;
+import com.zeromh.chat.core.domain.message.Message;
+import com.zeromh.chat.core.domain.message.PersonalMessage;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +30,7 @@ public class ConsumerChatConfig {
         configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class.getName());
         configProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class.getName());
-        configProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, Message.class.getName());
+        configProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, PersonalMessage.class.getName());
         configProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
         return new DefaultKafkaConsumerFactory<>(
                 configProps,

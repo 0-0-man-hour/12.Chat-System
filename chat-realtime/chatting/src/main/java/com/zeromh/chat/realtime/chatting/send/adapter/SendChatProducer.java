@@ -1,6 +1,7 @@
 package com.zeromh.chat.realtime.chatting.send.adapter;
 
-import com.zeromh.chat.core.domain.Message;
+import com.zeromh.chat.core.domain.message.Message;
+import com.zeromh.chat.core.domain.message.PersonalMessage;
 import com.zeromh.chat.realtime.chatting.send.application.SendChatPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
