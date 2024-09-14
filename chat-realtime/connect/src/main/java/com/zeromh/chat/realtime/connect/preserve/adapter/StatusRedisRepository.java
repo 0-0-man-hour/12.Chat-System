@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -40,5 +41,23 @@ public class StatusRedisRepository implements SaveStatusPort {
 
         return Optional.ofNullable(userStatus);
 
+    }
+
+    @Override
+    public List<UserStatus> findAllUserStatus() {
+        return redisTemplate.opsForHash().entries(STATUS).values().stream()
+                .map(str -> {
+                    try {
+                        return objectMapper.readValue((String) str, UserStatus.class);
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .toList();
+    }
+
+    @Override
+    public void remove(UserStatus userStatus) {
+        redisTemplate.opsForHash().delete(STATUS, userStatus.getId());
     }
 }

@@ -15,4 +15,9 @@ public class UserStatus {
     ConnectStatus status;
     String server;
     LocalDateTime lastUpdateAt;
+
+
+    public boolean isOld(long seconds) {
+        return lastUpdateAt.isBefore(LocalDateTime.now().minusSeconds(seconds));
+    }
 }

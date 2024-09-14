@@ -1,5 +1,6 @@
 package com.zeromh.chat.realtime.connect.preserve.adapter;
 
+import com.zeromh.chat.core.domain.member.ConnectStatus;
 import com.zeromh.chat.core.domain.member.UserStatus;
 import com.zeromh.chat.realtime.connect.preserve.application.SaveStatusPort;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +27,21 @@ public class StatusMongoRepository implements SaveStatusPort {
         UserStatus userStatus = mongoTemplate.findOne(query, UserStatus.class, COLLECTION_NAME);
 
         return Optional.ofNullable(userStatus);
+    }
+
+    @Override
+    public List<UserStatus> findAllUserStatus() {
+        Query query = new Query(Criteria.where("status").is("ONLINE"));
+
+
+        return mongoTemplate.find(query, UserStatus.class, COLLECTION_NAME);
+    }
+
+    @Override
+    public void remove(UserStatus userStatus) {
+        userStatus.setStatus(ConnectStatus.OFFLINE);
+        userStatus.setServer(null);
+        mongoTemplate.save(userStatus, COLLECTION_NAME);
     }
 
     @Override
